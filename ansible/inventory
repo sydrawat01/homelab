@@ -1,0 +1,9 @@
+[control]
+master ansible_connection=ssh
+
+[workers]
+node01 ansible_connection=ssh
+
+[homelab:children]
+control
+workers
