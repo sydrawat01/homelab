@@ -1,0 +1,15 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: longhorn-int-svc
+  namespace: longhorn-system
+spec:
+  type: ClusterIP
+  selector:
+    app: longhorn-ui
+  ports:
+    - name: http
+      port: 8000
+      protocol: TCP
+      targetPort: 8000
