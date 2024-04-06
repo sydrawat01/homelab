@@ -25,6 +25,7 @@ This should install MetalLB on the cluster. Next, we need to configure `MetalLB`
 MetalLB needs to know what IP range to use for external IPs. This is done via a `Custom Resource`. You can find the CR in the [official documentation](https://metallb.universe.tf/configuration/). So lets create and apply a `Custom Resource` with the following content:
 
 ```yaml
+# config/metallb-system/00_metallb_config.yaml
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
@@ -56,5 +57,16 @@ kubectl apply -f metallb-system/
 To check if everything is deployed and is OK, we must have as many `speaker-xxxx` PODs in the `metallb-system` namespace as the number of nodes in our cluster, since they run one per node. In my case, I have two. It may be more for you if you have more number of nodes.
 
 With this configuration applied, we can now see our services being assigned an external IP address from the IP address range we specified in the configuration for `MetalLB` above.
+
+Services that require the `LoadBalancer` type will automatically get an IPv4 IP address assigned to them automatically.
+We can confirm this by checking the `traefik` service in the `kube-system` namespace, which will be assigned the IP address `10.0.0.200` automatically.
+
+```bash
+kubectl get svc -n kube-system | grep 'traefik'
+```
+
+```output
+traefik          LoadBalancer   10.43.64.85     10.0.0.200    80:32106/TCP,443:32278/TCP     9d
+```
 
 [Prev: Install k3s](./04_k3s_install.md) | [Next: Storage configuration](./06_storage.md)
