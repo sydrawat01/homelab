@@ -14,9 +14,9 @@ To use `Longhorn` to setup storage volumes, all we need to do is mount the disk 
 Install the following software on all nodes, run the following commands from your ansible workstation:
 
 ```bash
-ansible homelab -b -m -a "name=nfs-common state=present"
-ansible homelab -b -m -a "name=open-iscsi state=present"
-ansible homelab -b -m -a "name=util-linux state=present"
+ansible homelab -b -m apt -a "name=nfs-common state=present"
+ansible homelab -b -m apt -a "name=open-iscsi state=present"
+ansible homelab -b -m apt -a "name=util-linux state=present"
 ```
 
 ## Mount storage disks

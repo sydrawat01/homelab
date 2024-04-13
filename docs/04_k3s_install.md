@@ -49,7 +49,7 @@ Once done, use the same command as above to connect to the cluster and check the
 We need to join some worker nodes now, in my case it's just one node, `node01`, but it might be more in your case. We are going to execute the join command on each node with Ansible.
 
 > \[!NOTE]\
-> We are doing this on our local workstation.
+> We are doing this on our local workstation. Also note, if you are not using the `--token some_random_password` flag while installing k3s, the randomly generated token will automatically be generated for you, and will be present here: `/var/lib/rancher/k3s/server/node-token`.
 
 ```bash
 ansible workers -b -m shell -a "curl -sfL https://get.k3s.io | K3S_URL=https://10.0.0.98:6443 K3S_TOKEN=some_random_password sh -"
