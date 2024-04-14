@@ -19,10 +19,81 @@ ansible homelab -b -m apt -a "name=open-iscsi state=present"
 ansible homelab -b -m apt -a "name=util-linux state=present"
 ```
 
-## Mount storage disks
+## Identify disks for storage
 
-> \[!IMPORTANT]\
-> Run all commands mentioned in this guide as the `root` user.
+Since we will be using ansible, we will add on to the `ansible/inventory` file a few variables that will help us with mounting multiple storage disks to the Raspberry Pis with ease.
+
+Let's use the `lsblk -f` command on every node to look for disk labels:
+
+```bash
+# cd ansible/
+ansible homelab -b -m shell -a "lsblk -f"
+```
+
+Each node has two disks, `sda` and `sdb`, but assigned at boot. Every disk that splits to `<name>1` and `<name>2`, and has `/boot` and `/` as mount points, these are our OS disks. The other ones are our storage drives.
+
+Update the `inventory` file for ansible with the `var_disk` variable to point to the storage drive.
+
+Here's what my `inventory` file looks like (I have one disk which is mounted to `sda1`):
+
+```ini
+[control]
+master ansible_connection=ssh var_hostname=master
+
+[workers]
+node01 ansible_connection=ssh var_hostname=node01 var_disk=sda1
+
+[homelab:children]
+control
+workers
+```
+
+### Wipe your disks
+
+Before using the storage drives, it's usually a good practice to format it to `ext4` file system format that works best with Linux. Let's do it using ansible:
+
+```bash
+#wipe
+ansible workers -b -m shell -a "wipefs -a /dev/{{ var_disk }}"
+#format to ext4
+ansible workers -b -m filesystem -a "fstype=ext4 dev=/dev/{{ var_disk }}"
+```
+
+This will clear the partition table and format the disk to `ext4` format.
+
+### File system and mount
+
+We need to get unique identification number of our storage disks so we can mount them every time, even if the `/dev/...` label changes for them. For that, we need the UUID of the disks.
+
+```bash
+ansible workers -b -m shell -a "blkid -s UUID -o value /dev/{{ var_disk }}"
+```
+
+If you have multiple nodes with multiple disks, add these UUID values to your `inventory` file for ansible:
+
+```ini
+[control]
+master ansible_connection=ssh var_hostname=master
+
+[workers]
+node01 ansible_connection=ssh var_hostname=node01 var_disk=sda1 var_uuid=d7bbc71e-4a42-a944-8f30-e7436e24397d
+
+[homelab:children]
+control
+workers
+```
+
+Using ansible, let's mount the disk to /storage01
+
+```bash
+ansible workers -m ansible.posix.mount -a "path=/storage01 src=UUID={{ var_uuid }} fstype=ext4 state=mounted" -b
+```
+
+## Mount storage disks manually
+
+> \[WARNING]\
+> It is recommended you use Ansible to format and mount disks to your nodes, since having multiple nodes with multiple storage disks will only make mounting these disks manually very time consuming.
+> If you have smaller number of nodes and disks, run all commands mentioned in this guide as the `root` user.
 
 To mount an external storage drive, follow the instructions mentioned below:
 
@@ -108,7 +179,7 @@ We will use the Longhorn helm chart to install Longhorn storage driver:
 ```bash
 helm repo add longhorn https://charts.longhorn.io
 helm repo update
-helm install longhorn longhorn/longhorn --namespace longhorn-system --create-namespace --set defaultSettings.defaultDataPath="/storage01" --set service.ui.loadBalancerIP="10.0.0.201" --set service.ui.type="LoadBalancer"
+helm install longhorn longhorn/longhorn --namespace longhorn-system --create-namespace --set persistence.defaultClassReplicaCount=1 --set defaultSettings.defaultDataPath="/storage01" --set service.ui.loadBalancerIP="10.0.0.201" --set service.ui.type="LoadBalancer"
 ```
 
 Give it some time, some PODs will restart, but in the end, everything under the `longhorn-system` namespace should be `1/1 Running` or `2/2 Running`.
