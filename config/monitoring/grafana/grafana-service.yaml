@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana
+  namespace: monitoring
+spec:
+  selector:
+    app: grafana
+  type: LoadBalancer
+  ports:
+    - name: http
+      port: 3000
+      targetPort: http
+  loadBalancerIP: 10.0.0.206

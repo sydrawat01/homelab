@@ -1,0 +1,37 @@
+apiVersion: monitoring.coreos.com/v1
+kind: Prometheus
+metadata:
+  name: prometheus-persistent
+  namespace: monitoring
+spec:
+  replicas: 1
+  retention: 7d
+  resources:
+    requests:
+      memory: 400Mi
+  nodeSelector:
+    node-type: worker
+  securityContext:
+    fsGroup: 2000
+    runAsNonRoot: true
+    runAsUser: 1000
+  serviceAccountName: prometheus
+  serviceMonitorSelector:
+    matchExpressions:
+      - key: name
+        operator: In
+        values:
+          - longhorn-prometheus-servicemonitor
+          - kube-state-metrics
+          - node-exporter
+          - kubelet
+          - traefik
+  storage:
+    volumeClaimTemplate:
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        storageClassName: longhorn
+        resources:
+          requests:
+            storage: 20Gi
