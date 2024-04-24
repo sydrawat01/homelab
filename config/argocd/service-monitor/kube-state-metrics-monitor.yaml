@@ -1,0 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kue-state-metrics-monitor
+spec:
+  destination:
+    name: ""
+    namespace: ""
+    server: "https://kubernetes.default.svc"
+  source:
+    path: config/monitoring/kube-state-metrics
+    repoURL: "https://github.com/sydrawat01/homelab.git"
+    targetRevision: HEAD
+  sources: []
+  project: service-monitor

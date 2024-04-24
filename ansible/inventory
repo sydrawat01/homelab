@@ -2,7 +2,7 @@
 master ansible_connection=ssh var_hostname=master
 
 [workers]
-node01 ansible_connection=ssh var_hostname=node01 var_disk=sda1 var_uuid=d7bbc71e-4a42-a944-8f30-e7436e24397d
+node01 ansible_connection=ssh var_hostname=node01 var_disk=sdb1 var_uuid=4df299f5-14c5-4617-ad7e-44eaa05a854d
 
 [homelab:children]
 control

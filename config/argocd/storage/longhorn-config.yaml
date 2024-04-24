@@ -1,0 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: longhorn-config
+spec:
+  destination:
+    name: ""
+    namespace: ""
+    server: "https://kubernetes.default.svc"
+  source:
+    path: config/longhorn
+    repoURL: "https://github.com/sydrawat01/homelab.git"
+    targetRevision: HEAD
+  sources: []
+  project: storage

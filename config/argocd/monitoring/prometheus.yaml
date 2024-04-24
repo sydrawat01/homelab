@@ -1,0 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus
+spec:
+  destination:
+    name: ""
+    namespace: ""
+    server: "https://kubernetes.default.svc"
+  source:
+    path: config/monitoring/prometheus
+    repoURL: "https://github.com/sydrawat01/homelab.git"
+    targetRevision: HEAD
+  sources: []
+  project: monitoring
