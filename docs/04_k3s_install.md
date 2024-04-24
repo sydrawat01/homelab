@@ -36,7 +36,7 @@ NAME     STATUS   ROLES                  AGE     VERSION
 master   Ready    control-plane,master   7d1h    v1.28.7+k3s1
 ```
 
-If you want to access the Kubernetes cluster from your workstation's terminal, we need to copy the contexts of the `kubeconfig` file from `/etc/rancher/k3s/k3s.yaml` on the `master node`, to our local machine at `~/.kbe.config`, and update the server IP address for the `kube-apiserver` to match the IP address of our master node:
+If you want to access the Kubernetes cluster from your workstation's terminal, we need to copy the contexts of the `kubeconfig` file from `/etc/rancher/k3s/k3s.yaml` on the `master node`, to our local machine at `~/.kube/config`, and update the server IP address for the `kube-apiserver` to match the IP address of our master node:
 
 ```yaml
   server: 10.0.0.98:6443

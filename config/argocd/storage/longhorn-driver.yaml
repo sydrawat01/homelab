@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: longhorn
+spec:
+  destination:
+    name: ""
+    namespace: longhorn-system
+    server: "https://kubernetes.default.svc"
+  source:
+    path: ""
+    repoURL: "https://charts.longhorn.io"
+    targetRevision: 1.6.1
+    chart: longhorn
+    helm:
+      parameters:
+        - name: persistence.defaultClassReplicaCount
+          value: "1"
+        - name: defaultSettings.defaultDataPath
+          value: /storage01
+        - name: service.ui.type
+          value: LoadBalancer
+        - name: service.ui.loadBalancerIP
+          value: "10.0.0.201"
+  sources: []
+  project: storage
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true

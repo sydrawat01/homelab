@@ -30,10 +30,16 @@ Importing graphs into Grafana is pretty straightforward. Here's my customized ve
 
 Here are some juicy pictures from the dashboard:
 
-![grafana-dashboard-1](../assets/grafana-1.png)
 > \[!NOTE]\
 > The thermals shown are for my Raspberry Pis.
 
-![grafana-dashboard-1](../assets/grafana-2.png)
+![grafana-dashboard-1](../assets/grafana/grafana-1.png)
 
-[Prev: Monitoring: Grafana](./11_monitoring_grafana.md) | Next: GitOps: ArgoCD(WIP)
+![grafana-dashboard-2](../assets/grafana/grafana-2.png)
+
+![longhorn-volumes](../assets/longhorn/longhorn-volumes.png)
+![longhorn-nodes](../assets/longhorn/longhorn-nodes.png)
+![longhorn-disks](../assets/longhorn/longhorn-disks.png)
+![longhorn-memory-and-cpu](../assets/longhorn/longhorn-cpu-memory.png)
+
+[Prev: Monitoring: Grafana](./11_monitoring_grafana.md) | [Next: GitOps: ArgoCD](./13_argocd.md)
