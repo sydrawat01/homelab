@@ -19,8 +19,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About the Project
 
-<!-- <p float="left"> -->
-<p align="center">
+<p float="left">
   <img src="./assets/argocd/argo-dashboard.png" width="500" />
   <img src="./assets/grafana/grafana-1.png" width="500" />
   <img src="./assets/uptime/uptime-1.png" width="500" />
