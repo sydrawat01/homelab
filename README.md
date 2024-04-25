@@ -2,7 +2,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/sydrawat01/homelab">
-    <img src="./assets/logo/k8s-pik8s-pi.png" alt="Logo" width="80" height="80">
+    <img src="./assets/logo/k8s-pik8s-pi.png" alt="Logo" width="130" height="130">
   </a>
 
   <h3 align="center">Homelab</h3>
