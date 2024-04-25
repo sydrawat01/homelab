@@ -26,6 +26,13 @@ spec:
         - name: homepage
           image: "ghcr.io/gethomepage/homepage:latest"
           imagePullPolicy: Always
+          resources:
+            requests:
+              memory: 100Mi
+              cpu: 200m
+            limits:
+              memory: 200Mi
+              cpu: 500m
           ports:
             - name: http
               containerPort: 3000
@@ -62,4 +69,5 @@ spec:
           configMap:
             name: homepage
         - name: logs
-          emptyDir: {}
+          persistentVolumeClaim:
+            claimName: longhorn-homepage-pvc
