@@ -5,7 +5,7 @@
     <img src="./assets/logo/k8s-pik8s-pi.png" alt="Logo" width="130" height="130">
   </a>
 
-  <h3 align="center">Homelab</h3>
+  <h1 align="center">Homelab</h1>
 
   <p align="center">
     An awesome guide to home-labbing on a budget!
@@ -19,9 +19,12 @@
 <!-- ABOUT THE PROJECT -->
 ## About the Project
 
-<p float="left">
+<!-- <p float="left"> -->
+<p align="center">
   <img src="./assets/argocd/argo-dashboard.png" width="500" />
   <img src="./assets/grafana/grafana-1.png" width="500" />
+  <img src="./assets/uptime/uptime-1.png" width="500" />
+  <img src="./assets/uptime/uptime-2.png" width="500" />
 </p>
 
 After much lurking on [r/homelab](https://www.reddit.com/r/homelab/) and [r/selfhosted](https://www.reddit.com/r/selfhosted/), I decided to put my Kubernetes skills to the test and create a simple homelab using the Raspberry Pis' I had lying around the house.
