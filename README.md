@@ -28,7 +28,7 @@ After much lurking on [r/homelab](https://www.reddit.com/r/homelab/) and [r/self
 
 Building your own homelab offers a myriad of benefits that can significantly enhance your learning, experimentation, and professional development in the field of technology. This homelab is just the first step into the big world of self-hosted applications. Right now, this is at a _"personal project for development"_ level.
 
-> \[NOTE]\
+> \[!NOTE]\
 > I'm in the process of creating a neat cluster with a basic Raspberry Pi case which can hold up to 4 Pis'. I'll add an image of my cluster when it's ready! Till then, hold your horses!
 
 <!-- WHY KUBERNETES -->
@@ -72,7 +72,7 @@ You can explore the [docs](./docs/) as per your needs. If you need a starting po
 
 For a more complex, comprehensive setup with ArgoCD, and following the best GitOps practices, I would start off with [docs/13_argocd.md](./docs/13_argocd.md).
 
-> \[IMPORTANT]\
+> \[!IMPORTANT]\
 > Only start at `ArgoCD` if you know what you are doing! In any case, I suggest going through the rest of the [docs](./docs/) before starting off with `ArgoCD` to configure your homelab cluster.
 
 <!-- BUILT WITH -->
