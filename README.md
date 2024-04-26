@@ -16,6 +16,10 @@
   </p>
 </div>
 
+<p align="center">
+  <a href="https://sydrawat.me"><strong>Visit my Homelab!</strong></a>
+</p>
+
 <!-- ABOUT THE PROJECT -->
 ## About the Project
 
@@ -24,6 +28,7 @@
   <img src="./assets/grafana/grafana-1.png" width="350" />
   <img src="./assets/uptime/uptime-1.png" width="350" />
   <img src="./assets/uptime/uptime-2.png" width="350" />
+  <img src="./assets/homepage/homepage.png" width="350" />
 </p>
 
 After much lurking on [r/homelab](https://www.reddit.com/r/homelab/) and [r/selfhosted](https://www.reddit.com/r/selfhosted/), I decided to put my Kubernetes skills to the test and create a simple homelab using the Raspberry Pis' I had lying around the house.
