@@ -8,34 +8,124 @@ metadata:
 data:
   kubernetes.yaml: |
     mode: cluster
-  settings.yaml: ""
-  #settings.yaml: |
-  #  providers:
-  #    longhorn:
-  #      url: https://longhorn.my.network
+  settings.yaml: |
+    headerStyle: clean
+    statusStyle: "dot"
+    cardBlur: sm
+    language: en
+    layout:
+      - Monitoring: null
+      - Automation: null
+      - Utils: null
+      - Devices:
+          columns: 4
+          style: row
+    quicklaunch:
+      hideInetrnetSearch: true
+      hideVisitURL: true
+      searchDescriptions: true
   custom.css: ""
   custom.js: ""
-  bookmarks.yaml: |
-    - Developer:
-        - Github:
-            - abbr: GH
-              href: https://github.com/
+  bookmarks.yaml: ""
+  # bookmarks.yaml: |
+  # - Developer:
+  #     - Github:
+  #         - icon: github
+  #           href: https://github.com/sydrawat01
   services.yaml: |
-    - My First Group:
-        - My First Service:
-            href: http://localhost/
-            description: Homepage is awesome
+    - Monitoring:
+        - Prometheus:
+            icon: prometheus
+            href: http://10.0.0.205:9090/
+            description: Prometheus service (accessible from within the network)
+            siteMonitor: http://10.0.0.205:9090
+            widget:
+              type: prometheus
+              url: http://10.0.0.205:9090
 
-    - My Second Group:
-        - My Second Service:
-            href: http://localhost/
-            description: Homepage is the best
+        - Uptime Kuma:
+            icon: uptime-kuma
+            href: https://status.sydrawat.me
+            description: Status monitor for all services running on the cluster
+            siteMonitor: https://status.sydrawat.me
+            widget:
+              type: uptimekuma
+              url: https://status.sydrawat.me
+              slug: monitor
 
-    - My Third Group:
-        - My Third Service:
-            href: http://localhost/
-            description: Homepage is 😎
+        - Grafana:
+            icon: grafana
+            href: https://grafana.sydrawat.me
+            description: Grafana visualization dashboard
+            siteMonitor: https://grafana.sydrawat.me
+            widget:
+              type: grafana
+              url: https://grafana.sydrawat.me
+              username: admin
+              password: your-passwd
+
+    - Automation:
+        - ArgoCD:
+            icon: argocd.png
+            description: GitOps Continuous Delivery
+            href: https://argocd.sydrawat.me
+            siteMonitor: https://argocd.sydrawat.me
+
+        - Longhorn:
+            icon: longhorn.png
+            description: Kubernetes Storage
+            href: http://10.0.0.201
+            siteMonitor: http://10.0.0.201
+
+        - Cloudflare:
+            icon: cloudflare
+            widget:
+              type: cloudflared
+              accountid: acc-id
+              tunnelid: tunnel-id
+              key: api-key
+
+    - Utils:
+        - Calendar:
+            icon: calendar.png
+            widget:
+              type: calendar
+              firstDayInWeek: sunday
+              view: monthly
+              maxEvents: 10
+              showTime: true
+              timezone: America/New_York
+
+    - Devices:
+        - Raspberry Pi 4B (Master):
+            icon: raspberrypi.png
+            description: Single board Raspberry Pi 4B x 2 GiB RAM
+        - Raspberry Pi 4B (Worker):
+            icon: raspberrypi.png
+            description: Single board Raspberry Pi 4B x 8 GiB RAM
+        - Raspberry Pi 3B (standby):
+            icon: raspberrypi.png
+            description: Single board Raspberry Pi 3B x 1 GiB RAM
+        - Raspberry Pi 3 (standby):
+            icon: raspberrypi.png
+            description: Single board Raspberry Pi 3 x 1 GiB RAM
+
   widgets.yaml: |
+    - datetime:
+        format:
+          hour12: false
+          timeStyle: short
+        text_size: xl
+    - weatherapi:
+        apiKey: api-key
+        cache: 5
+        label: Cambridge, MA
+        latitude: lat
+        longitude: long
+        units: metric
+    - greeting:
+        text: RPi x K3s
+        text_size: 4xl
     - kubernetes:
         cluster:
           show: true
@@ -53,7 +143,6 @@ data:
         expanded: true
         cpu: true
         memory: true
-    - search:
-        provider: duckduckgo
-        target: _blank
+        cputemp: true
+        uptime: true
   docker.yaml: ""
