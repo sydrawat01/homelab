@@ -24,10 +24,12 @@
 ## About the Project
 
 <p align="center">
+  <img src="./assets/cluster/pi-cluster-front.JPG" width="350" />
   <img src="./assets/argocd/argo-dashboard.png" width="350" />
   <img src="./assets/grafana/grafana-1.png" width="350" />
   <img src="./assets/uptime/uptime-1.png" width="350" />
   <img src="./assets/uptime/uptime-2.png" width="350" />
+  <img src="./assets/administration/k9s.png" width="350" />
   <img src="./assets/homepage/homepage.png" width="350" />
 </p>
 
