@@ -1,0 +1,14 @@
+project: applications
+source:
+  repoURL: 'https://github.com/channel-42/maybe-helm.git'
+  path: chart
+  targetRevision: HEAD
+  helm:
+    valueFiles:
+      - values.yaml
+destination:
+  server: 'https://kubernetes.default.svc'
+  namespace: finance
+syncPolicy:
+  syncOptions:
+    - CreateNamespace=true
