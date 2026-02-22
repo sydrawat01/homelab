@@ -1,0 +1,33 @@
+- name: Ensure containerd directory exists
+  ansible.builtin.file:
+    path: /etc/containerd
+    state: directory
+    mode: "0755"
+
+- name: Generate default containerd config
+  ansible.builtin.command: containerd config default
+  register: containerd_default_config
+  changed_when: false
+
+- name: Write containerd config.toml
+  ansible.builtin.copy:
+    dest: /etc/containerd/config.toml
+    content: "{{ containerd_default_config.stdout }}"
+    mode: "0644"
+  notify: Restart containerd
+
+# Enable SystemdCgroup = true
+- name: Set SystemdCgroup true for containerd v2
+  ansible.builtin.replace:
+    path: /etc/containerd/config.toml
+    regexp: 'SystemdCgroup\s*=\s*\w+'
+    replace: 'SystemdCgroup = true'
+  notify: Restart containerd
+
+# Ensure CRI is Enabled in containerd
+- name: Ensure "cri" is not in disabled_plugins
+  ansible.builtin.replace:
+    path: /etc/containerd/config.toml
+    regexp: '"cri",?\s*'
+    replace: ''
+  notify: Restart containerd

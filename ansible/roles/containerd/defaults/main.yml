@@ -1,0 +1,13 @@
+docker_arch: amd64
+
+docker_gpg_url: https://download.docker.com/linux/ubuntu/gpg
+
+docker_packages:
+  - docker-ce
+  - docker-ce-cli
+  - containerd.io
+  - docker-buildx-plugin
+  - docker-compose-plugin
+
+docker_group_users:
+  - srawat

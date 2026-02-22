@@ -1,0 +1,23 @@
+- name: Remove conflicting packages
+  ansible.builtin.apt:
+    name:
+      - docker.io
+      - docker-compose
+      - docker-compose-plugin
+      - docker-doc
+      - podman-docker
+      - containerd
+      - runc
+    state: absent
+    purge: yes
+    autoremove: yes
+
+- name: Install prerequisite packages
+  ansible.builtin.apt:
+    name:
+      - ca-certificates
+      - curl
+      - gnupg
+      - lsb-release
+    state: present
+    update_cache: yes

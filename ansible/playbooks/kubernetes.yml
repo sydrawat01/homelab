@@ -1,0 +1,6 @@
+- name: Install kubeadm tools
+  hosts: homelab
+  become: true
+
+  roles:
+    - kubeadm

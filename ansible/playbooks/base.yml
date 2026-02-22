@@ -1,0 +1,7 @@
+- name: Configure all homelab nodes
+  hosts: homelab
+  become: true
+
+  roles:
+    - common
+    - containerd

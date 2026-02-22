@@ -1,0 +1,17 @@
+- ansible.builtin.import_tasks: preinstall.yml
+  tags: preinstall
+
+- ansible.builtin.import_tasks: install.yml
+  tags: install
+
+- ansible.builtin.import_tasks: postinstall.yml
+  tags: postinstall
+
+- ansible.builtin.import_tasks: cni_plugins.yml
+  tags: postinstall
+
+- ansible.builtin.import_tasks: configure.yml
+  tags: configure
+
+- ansible.builtin.import_tasks: service.yml
+  tags: service
